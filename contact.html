@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>تواصل معنا - أكاديمية التعلم</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --main-color: #306BFF;
+      --bg-light: #f5f7fa;
+      --text-color: #1e2a38;
+      --light-gray: #e6ecf3;
+      --transition-speed: 0.3s;
+    }
+
+    * {box-sizing: border-box;}
+
+    body {
+      font-family: 'Cairo', sans-serif;
+      margin: 0;
+      background-color: var(--bg-light);
+      color: var(--text-color);
+    }
+
+    header {
+      background: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      position: sticky;
+      top: 0;
+      z-index: 999;
+    }
+
+    .logo {
+      font-weight: bold;
+      font-size: 1.5rem;
+      color: var(--main-color);
+      text-align: center;
+      flex: 1;
+    }
+
+    nav {
+      order: 2;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: flex-end;
+      gap: 1.2rem;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--text-color);
+      font-weight: 600;
+      transition: color var(--transition-speed);
+    }
+
+    nav a:hover {
+      color: var(--main-color);
+    }
+
+    .menu-toggle {
+      font-size: 1.6rem;
+      color: var(--main-color);
+      cursor: pointer;
+      order: -1; /* تبقى في أقصى اليسار */
+    }
+
+    @media (max-width: 768px) {
+      nav ul {
+        display: none;
+        flex-direction: column;
+        background: white;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        width: 100%;
+        padding: 1rem 0;
+        text-align: center;
+      }
+
+      nav ul.active {
+        display: flex;
+      }
+    }
+
+    footer {
+      background: var(--light-gray);
+      padding: 1rem;
+      text-align: center;
+      font-size: 0.9rem;
+    }
+
+    /* Contact Page Styles */
+    .container {
+      max-width: 1000px;
+      margin: auto;
+      padding: 2rem;
+    }
+
+    h2 {
+      text-align: center;
+      color: var(--main-color);
+      margin-bottom: 2rem;
+    }
+
+    .contact-box {
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: space-between;
+    }
+
+    form {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    label {
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+
+    input, textarea {
+      margin-bottom: 1rem;
+      padding: 0.7rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1rem;
+    }
+
+    button {
+      padding: 0.8rem;
+      background-color: var(--main-color);
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #1c4cd1;
+    }
+
+    .info {
+      flex: 1;
+    }
+
+    .info p {
+      margin: 0.5rem 0;
+    }
+
+    .social-icons a {
+      color: var(--main-color);
+      margin-left: 10px;
+      font-size: 1.5rem;
+      transition: color 0.3s;
+    }
+
+    .social-icons a:hover {
+      color: #1c4cd1;
+    }
+
+    iframe {
+      width: 100%;
+      height: 300px;
+      border: 0;
+      border-radius: 12px;
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="menu-toggle" onclick="toggleMenu()">
+      <i class="fas fa-bars"></i>
+    </div>
+    <div class="logo">محاسب بلا قيود</div>
+    <nav>
+      <ul id="main-nav">
+        <li><a href="index.html">الرئيسية</a></li>
+        <li><a href="courses.html">الدورات</a></li>
+        <li><a href="we.html">من نحن</a></li>
+        <li><a href="consulting.html">الاستشارات</a></li>
+        <!-- <li><a href="contact.html">تواصل معنا</a></li> -->
+        <li><a href="job.html">التوظيف</a></li>
+        <!-- <li><a href="login.html">دخول</a></li> -->
+      </ul>
+      
+    </nav>
+  </header>
+
+  <!-- Contact Section -->
+  <div class="container">
+    <h2>تواصل معنا</h2>
+    <div class="contact-box">
+      <form>
+        <label for="name">الاسم الكامل</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="email">البريد الإلكتروني</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="message">رسالتك</label>
+        <textarea id="message" name="message" rows="5" required></textarea>
+
+        <button type="submit">إرسال</button>
+      </form>
+
+      <div class="info">
+        <p><strong>العنوان:</strong> القاهرة، مصر</p>
+        <p><strong>البريد:</strong> academy@example.com</p>
+        <p><strong>الهاتف:</strong> 01012345678</p>
+        <p><strong>تابعنا:</strong></p>
+        <div class="social-icons">
+          <a href="#" title="فيسبوك"><i class="fab fa-facebook"></i></a>
+          <a href="#" title="تويتر"><i class="fab fa-twitter"></i></a>
+          <a href="#" title="لينكدإن"><i class="fab fa-linkedin"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3455.386375737338!2d31.2357116151167!3d30.044419881881804!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1458410b7d5438cb%3A0xecd71a8e8c4e0e9c!2sCairo!5e0!3m2!1sen!2seg!4v1636489122443!5m2!1sen!2seg" allowfullscreen="" loading="lazy"></iframe>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 أكاديمية التعلم. جميع الحقوق محفوظة.</p>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById('main-nav').classList.toggle('active');
+    }
+  </script>
+</body>
+</html>

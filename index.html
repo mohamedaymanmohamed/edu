@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>محاسب بلا قيود</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+
+  <style>
+    :root {
+      --main-color: #306BFF;
+      --bg-light: #f5f7fa;
+      --text-color: #1e2a38;
+      --light-gray: #e6ecf3;
+      --transition-speed: 0.3s;
+    }
+    * {box-sizing: border-box;margin:0;padding:0;}
+    body {font-family: 'Cairo', sans-serif;background-color: var(--bg-light);color: var(--text-color);}
+
+    header {
+      background:white;display:flex;justify-content:space-between;align-items:center;padding:1rem 2rem;box-shadow:0 2px 10px rgba(0,0,0,0.05);position:sticky;top:0;z-index:999;
+    }
+    .logo {font-weight:bold;font-size:1.8rem;color:var(--main-color);}
+    nav ul {list-style:none;display:flex;gap:1.2rem;}
+    nav a {text-decoration:none;color:var(--text-color);font-weight:600;}
+    nav a:hover {color:var(--main-color);}
+    .menu-toggle {font-size:1.6rem;color:var(--main-color);cursor:pointer;order:-1;}
+
+    @media(max-width:768px){
+      nav ul {display:none;flex-direction:column;background:white;position:absolute;top:100%;right:0;width:100%;text-align:center;padding:1rem 0;}
+      nav ul.active {display:flex;}
+    }
+
+    /* ✅ Hero مع خلفية احترافية */
+    .hero {
+      position: relative;
+      text-align: center;
+      padding: 6rem 2rem;
+      color: white;
+      background: url('banner.png') no-repeat center center/cover;
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 1;
+    }
+    .hero h1, .hero p, .hero a {
+      position: relative;
+      z-index: 2;
+    }
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    .hero p {
+      font-size: 1.4rem;
+      margin-bottom: 1.8rem;
+    }
+    .btn-primary {
+      background: var(--main-color);
+      color: white;
+      padding: 0.9rem 2.2rem;
+      border: none;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      font-weight: bold;
+      text-decoration: none;
+      transition: background var(--transition-speed), transform 0.3s ease;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+    .btn-primary:hover {
+      background:#1c4cd1;
+      transform: scale(1.05);
+    }
+
+    .features, .courses, .testimonials, .stats, .cta {padding:3rem 2rem;text-align:center;}
+    .features h2, .courses h2, .testimonials h2, .stats h2, .cta h2 {font-size:2rem;margin-bottom:1.5rem;}
+
+    .features-grid {display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.5rem;}
+    .feature {background:white;padding:1.5rem;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,0.1);}
+    .feature i {font-size:2rem;color:var(--main-color);margin-bottom:0.8rem;}
+
+    .courses-grid {display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.5rem;}
+    .course {background:white;border-radius:10px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.1);}
+    .course img {width:100%;height:180px;object-fit:cover;}
+    .course h3 {margin:1rem 0;}
+    .course p {padding:0 1rem 1rem;font-size:0.9rem;}
+
+    .testimonials-grid {display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.5rem;}
+    .testimonial {background:white;padding:1.5rem;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,0.1);}
+    .testimonial p {margin-bottom:0.8rem;font-style:italic;}
+    .testimonial h4 {color:var(--main-color);}
+
+    .stats-grid {display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1rem;}
+    .stat {background:white;padding:1.5rem;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,0.1);}
+    .stat h3 {font-size:2rem;color:var(--main-color);}
+
+    .cta {background:var(--main-color);color:white;border-radius:10px;padding:3rem;}
+    .cta a {display:inline-block;margin-top:1rem;background:white;color:var(--main-color);padding:0.8rem 2rem;border-radius:8px;font-weight:bold;text-decoration:none;}
+
+    footer {background:var(--light-gray);padding:1rem;text-align:center;font-size:0.9rem;}
+
+    .whatsapp-btn {position:fixed;bottom:20px;left:20px;background:#25d366;color:white;padding:12px 16px;border-radius:50%;font-size:1rem;box-shadow:0 4px 8px rgba(0,0,0,0.2);cursor:pointer;z-index:999;}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="menu-toggle" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
+    <div class="logo">محاسب بلا قيود</div>
+    <nav>
+      <ul id="main-nav">
+        <li><a href="index.html">الرئيسية</a></li>
+        <li><a href="courses.html">الدورات</a></li>
+        <li><a href="we.html">من نحن</a></li>
+        <li><a href="consulting.html">الاستشارات</a></li>
+        <!-- <li><a href="contact.html">تواصل معنا</a></li> -->
+        <li><a href="job.html">التوظيف</a></li>
+        <!-- <li><a href="login.html">دخول</a></li> -->
+      </ul>
+      
+    </nav>
+  </header>
+
+  <!-- ✅ Hero Section -->
+  <section class="hero" data-aos="fade-up">
+    <h1>ابدأ التعلم الآن</h1>
+    <p>تعلم من أفضل المدربين بشكل عملى و سلس</p>
+    <a href="courses.html" class="btn-primary">استعرض الدورات</a>
+  </section>
+
+  <!-- باقي الصفحة نفس القديم -->
+  <section class="features" data-aos="fade-up">
+    <h2>لماذا تختارنا؟</h2>
+    <div class="features-grid">
+      <div class="feature"><i class="fas fa-certificate"></i><h3>شهادات</h3><p>احصل على شهادات احترافية بعد إتمام الدورات.</p></div>
+      <div class="feature"><i class="fas fa-user-tie"></i><h3>مدربين خبراء</h3><p>تعلم من أفضل الخبراء في مجال المحاسبة والتحليل.</p></div>
+      <div class="feature"><i class="fas fa-headset"></i><h3>دعم فني</h3><p>نقدم لك دعمًا مستمرًا لحل جميع استفساراتك.</p></div>
+    </div>
+  </section>
+
+  <section class="courses" data-aos="fade-up">
+    <h2>أشهر الدورات</h2>
+    <div class="courses-grid" id="coursesGrid">
+      <div class="course" data-title="محاسبة المقاولات">
+        <img src="banner.png" alt="">
+        <h3>محاسبة المقاولات</h3>
+        <p>تعلم جميع مهارات محاسبة المقاولات من البداية للاحتراف.</p>
+      </div>
+      <div class="course" data-title="محاسبة المطاعم">
+        <img src="banner.png" alt="">
+        <h3>محاسبة المطاعم</h3>
+        <p>احترف إدارة الحسابات في مجال المطاعم والكافيهات.</p>
+      </div>
+      <div class="course" data-title="تحليل البيانات">
+        <img src="banner.png" alt="">
+        <h3>محاسبة المصانع</h3>
+        <p>احتراف ادارة الحسابات في المصانع و الشركات الصناعية.</p>
+      </div>
+      <div class="course" data-title="تحليل البيانات">
+        <img src="banner.png" alt="">
+        <h3>تحليل البيانات</h3>
+        <p>اكتسب مهارات تحليل البيانات باستخدام أحدث الأدوات.</p>
+      </div>
+      <div class="course" data-title="تحليل البيانات">
+        <img src="banner.png" alt="">
+        <h3>التحليل المالي</h3>
+        <p>اكتسب مهارات التحليل المالي واعداد التقارير الاحترافية وطريقة تقديمها</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="testimonials" data-aos="fade-up">
+    <h2>آراء عملائنا</h2>
+    <div class="testimonials-grid">
+      <div class="testimonial"><p>"من أفضل المنصات التعليمية في المحاسبة."</p>
+        <!-- <h4>أحمد محمد</h4> -->
+      </div>
+      <div class="testimonial"><p>"الدورات ممتازة وفريق الدعم متعاون جدًا."</p>
+        <!-- <h4>سارة علي</h4> -->
+      </div>
+      <div class="testimonial"><p>"المحتوى التعليمي و التدريبي في تحليل البيانات مميز للغاية."</p>
+        <!-- <h4>محمد حسن</h4> -->
+      </div>
+    </div>
+  </section>
+
+  <section class="stats" data-aos="fade-up">
+    <h2>إنجازاتنا</h2>
+    <div class="stats-grid">
+      <div class="stat"><h3>+500</h3><p>طالب</p></div>
+      <div class="stat"><h3>+50</h3><p>دورة</p></div>
+      <div class="stat"><h3>+3</h3><p>مدربين</p></div>
+      <div class="stat"><h3>+100</h3><p>موظف</p></div>
+    </div>
+  </section>
+
+  <section class="cta" data-aos="fade-up">
+    <h2>هل أنت مستعد للبدء؟</h2>
+    <p>انضم إلينا الآن وابدأ رحلتك التعليمية.</p>
+    <a href="https://wa.me/201234567890">سجل الآن</a>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 محاسب بلا قيود. جميع الحقوق محفوظة.</p>
+  </footer>
+
+  <a href="https://wa.me/201234567890" target="_blank" class="whatsapp-btn"><i class="fab fa-whatsapp"></i></a>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script>
+    AOS.init({duration:1000});
+    function toggleMenu(){document.getElementById('main-nav').classList.toggle('active');}
+  </script>
+</body>
+</html>

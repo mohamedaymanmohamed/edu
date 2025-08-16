@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>كورس محاسبة المقاولات - أكاديمية التعلم</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --main-color: #306BFF;
+      --bg-light: #f5f7fa;
+      --text-color: #1e2a38;
+      --light-gray: #e6ecf3;
+      --transition-speed: 0.3s;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Cairo', sans-serif;
+      background-color: #f8f9fb;
+    }
+
+    /* Header */
+    header {
+      background: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      position: sticky;
+      top: 0;
+      z-index: 999;
+    }
+
+    .logo {
+      font-weight: bold;
+      font-size: 1.5rem;
+      color: var(--main-color);
+      text-align: center;
+      flex: 1;
+    }
+
+    nav {
+      order: 2;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.2rem;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--text-color);
+      font-weight: 600;
+      transition: color var(--transition-speed);
+    }
+
+    nav a:hover {
+      color: var(--main-color);
+    }
+
+    .menu-toggle {
+      font-size: 1.6rem;
+      color: var(--main-color);
+      cursor: pointer;
+      order: -1; /* تبقى أقصى اليسار */
+    }
+
+    @media (max-width: 768px) {
+      nav ul {
+        display: none;
+        flex-direction: column;
+        background: white;
+        position: absolute;
+        top: 60px;
+        right: 0;
+        width: 100%;
+        padding: 1rem 0;
+        text-align: center;
+      }
+
+      nav ul.active {
+        display: flex;
+      }
+    }
+
+    /* Course Layout */
+    .course-layout {
+      display: flex;
+      max-width: 1200px;
+      margin: auto;
+      padding: 2rem 1rem;
+      gap: 2rem;
+    }
+
+    .sidebar {
+      width: 250px;
+      background: white;
+      padding: 1rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      height: fit-content;
+    }
+
+    .sidebar h3 {
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+      color: var(--main-color);
+    }
+
+    .lesson-link {
+      display: block;
+      margin-bottom: 0.75rem;
+      color: #1e2a38;
+      text-decoration: none;
+      padding: 0.4rem 0.6rem;
+      border-radius: 6px;
+      transition: background 0.2s;
+      cursor: pointer;
+    }
+
+    .lesson-link:hover {
+      background: #f0f4ff;
+    }
+
+    .main-content {
+      flex: 1;
+    }
+
+    .course-header {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      margin-bottom: 2rem;
+    }
+
+    .course-title {
+      font-size: 2rem;
+      font-weight: bold;
+      color: var(--main-color);
+      margin-bottom: 0.5rem;
+    }
+
+    .course-desc {
+      font-size: 1.1rem;
+      color: #333;
+    }
+
+    .video-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    .video-card {
+      background: white;
+      border-radius: 10px;
+      padding: 1rem;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    }
+
+    .video-title {
+      font-weight: 600;
+      margin-top: 0.8rem;
+      font-size: 1rem;
+    }
+
+    video {
+      width: 100%;
+      border-radius: 6px;
+    }
+
+    @media (max-width: 768px) {
+      .course-layout {
+        flex-direction: column;
+      }
+
+      .sidebar {
+        width: 100%;
+      }
+    }
+
+    /* Footer */
+    footer {
+      background: var(--light-gray);
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="menu-toggle" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
+    <div class="logo">محاسب بلا قيود</div>
+    <nav>
+      <ul id="main-nav">
+        <li><a href="index.html">الرئيسية</a></li>
+        <li><a href="courses.html">الدورات</a></li>
+        <li><a href="we.html">من نحن</a></li>
+        <li><a href="consulting.html">الاستشارات</a></li>
+        <!-- <li><a href="contact.html">تواصل معنا</a></li> -->
+        <li><a href="job.html">التوظيف</a></li>
+        <!-- <li><a href="login.html">دخول</a></li> -->
+      </ul>
+      
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <div class="course-layout">
+    <aside class="sidebar">
+      <h3>محتوى الدورة</h3>
+      <span class="lesson-link" onclick="filterLesson('lesson1')">الدرس الأول: مقدمة</span>
+      <span class="lesson-link" onclick="filterLesson('lesson2')">الدرس الثاني: أنواع العقود</span>
+      <span class="lesson-link" onclick="filterLesson('lesson3')">الدرس الثالث: الدورة المستندية</span>
+      <span class="lesson-link" onclick="filterLesson('lesson4')">الدرس الرابع: التحليل المالي</span>
+      <span class="lesson-link" onclick="filterLesson('all')" style="color:#306BFF;font-weight:600">عرض الكل</span>
+    </aside>
+
+    <main class="main-content">
+      <div class="course-header">
+        <div class="course-title">كورس محاسبة المقاولات</div>
+        <div class="course-desc">تعلم كافة الجوانب المحاسبية المتعلقة بشركات المقاولات خطوة بخطوة.</div>
+      </div>
+
+      <div class="video-grid">
+        <div class="video-card" id="lesson1">
+          <video src="https://www.w3schools.com/html/mov_bbb.mp4" controls></video>
+          <div class="video-title">الدرس الأول: مقدمة في محاسبة المقاولات</div>
+        </div>
+        <div class="video-card" id="lesson2">
+          <video src="https://www.w3schools.com/html/movie.mp4" controls></video>
+          <div class="video-title">الدرس الثاني: أنواع العقود</div>
+        </div>
+        <div class="video-card" id="lesson3">
+          <video src="https://www.w3schools.com/html/mov_bbb.mp4" controls></video>
+          <div class="video-title">الدرس الثالث: الدورة المستندية</div>
+        </div>
+        <div class="video-card" id="lesson4">
+          <video src="https://www.w3schools.com/html/movie.mp4" controls></video>
+          <div class="video-title">الدرس الرابع: التحليل المالي للمشاريع</div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 أكاديمية التعلم. جميع الحقوق محفوظة.</p>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById('nav-menu').classList.toggle('active');
+    }
+
+    function filterLesson(lessonId) {
+      const lessons = document.querySelectorAll('.video-card');
+      lessons.forEach(card => {
+        if (lessonId === 'all') {
+          card.style.display = 'block';
+        } else {
+          card.style.display = card.id === lessonId ? 'block' : 'none';
+        }
+      });
+    }
+  </script>
+</body>
+</html>

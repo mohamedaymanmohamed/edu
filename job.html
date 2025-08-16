@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>فرص التوظيف - محاسب بلا قيود</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --main-color: #306BFF;
+      --bg-light: #f5f7fa;
+      --text-color: #1e2a38;
+      --light-gray: #e6ecf3;
+      --transition-speed: 0.3s;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Cairo', sans-serif;
+      background: var(--bg-light);
+      color: var(--text-color);
+    }
+
+    /* Header */
+    header {
+      background: white;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 2rem;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      position: sticky;
+      top: 0;
+      z-index: 999;
+    }
+
+    .logo {
+      font-weight: bold;
+      font-size: 1.5rem;
+      color: var(--main-color);
+      text-align: center;
+      flex: 1;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.2rem;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--text-color);
+      font-weight: 600;
+      transition: color var(--transition-speed);
+    }
+
+    nav a:hover {
+      color: var(--main-color);
+    }
+
+    .menu-toggle {
+      font-size: 1.6rem;
+      color: var(--main-color);
+      cursor: pointer;
+      order: -1;
+    }
+
+    @media (max-width: 768px) {
+      nav ul {
+        display: none;
+        flex-direction: column;
+        background: white;
+        position: absolute;
+        top: 60px;
+        right: 0;
+        width: 100%;
+        text-align: center;
+        padding: 1rem 0;
+      }
+
+      nav ul.active {
+        display: flex;
+      }
+    }
+
+    /* Job Section */
+    .container {
+      max-width: 1100px;
+      margin: 2rem auto;
+      padding: 1rem;
+    }
+
+    h2 {
+      text-align: center;
+      color: var(--main-color);
+      margin-bottom: 2rem;
+    }
+
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+      margin-bottom: 2rem;
+    }
+
+    .filters input, .filters select {
+      padding: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-family: 'Cairo', sans-serif;
+    }
+
+    .students-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+
+    .student-card {
+      background-color: white;
+      border-radius: 10px;
+      text-align: center;
+      padding: 1rem;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+
+    .student-card img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 1rem;
+    }
+
+    .student-name {
+      font-weight: bold;
+      font-size: 1.1rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .student-role {
+      color: #555;
+      font-size: 0.95rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .student-course,
+    .student-level {
+      color: #333;
+      font-size: 0.9rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .rating {
+      color: gold;
+      margin-bottom: 0.5rem;
+    }
+
+    .salary {
+      font-size: 0.9rem;
+      color: #666;
+      margin-bottom: 1rem;
+    }
+
+    .cv-btn {
+      display: inline-block;
+      background-color: var(--main-color);
+      color: white;
+      padding: 0.4rem 1.2rem;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      text-decoration: none;
+      transition: background 0.3s;
+    }
+
+    .cv-btn:hover {
+      background-color: #1c4cd1;
+    }
+
+    footer {
+      background: var(--light-gray);
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="menu-toggle" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
+    <div class="logo">محاسب بلا قيود</div>
+    <nav>
+      <ul id="main-nav">
+        <li><a href="index.html">الرئيسية</a></li>
+        <li><a href="courses.html">الدورات</a></li>
+        <li><a href="we.html">من نحن</a></li>
+        <li><a href="consulting.html">الاستشارات</a></li>
+        <!-- <li><a href="contact.html">تواصل معنا</a></li> -->
+        <li><a href="job.html">التوظيف</a></li>
+        <!-- <li><a href="login.html">دخول</a></li> -->
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Job Section -->
+  <section class="container">
+    <h2>أميز الخريجين الباحثين عن فرص عمل</h2>
+
+    <div class="filters">
+      <input type="number" placeholder="الراتب من" id="salary-from">
+      <input type="number" placeholder="الراتب إلى" id="salary-to">
+      <select id="course-filter">
+        <option value="">كل الكورسات</option>
+        <option value="محاسبة المقاولات">محاسبة المقاولات</option>
+        <option value="محاسبة المصانع">محاسبة المصانع</option>
+        <option value="محاسبة المطاعم">محاسبة المطاعم</option>
+        <option value="تحليل البيانات">تحليل البيانات</option>
+      </select>
+      <select id="level-filter">
+        <option value="">كل الدرجات الوظيفية</option>
+        <option value="حديث التخرج">حديث التخرج</option>
+        <option value="موظف خبير">موظف خبير</option>
+        <option value="مدير">مدير</option>
+      </select>
+    </div>
+
+    <div class="students-grid">
+      <div class="student-card" data-salary="7000" data-course="محاسبة المقاولات" data-level="حديث التخرج">
+        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="student">
+        <div class="student-name">أحمد جمال</div>
+        <!-- <div class="student-role">محاسب مقاولات</div> -->
+        <div class="student-course">محاسبة المقاولات</div>
+        <div class="student-level">حديث التخرج</div>
+        <div class="rating">
+          <i class="fas fa-star"></i><i class="fas fa-star"></i>
+          <i class="fas fa-star"></i><i class="fas fa-star"></i>
+          <i class="fas fa-star-half-alt"></i>
+        </div>
+        <div class="salary">متوسط الراتب: 7000 جنيه</div>
+        <a href="#" class="cv-btn">عرض السيرة الذاتية</a>
+      </div>
+
+      <div class="student-card" data-salary="9000" data-course="تحليل البيانات" data-level="موظف خبير">
+        <img src="https://randomuser.me/api/portraits/women/45.jpg" alt="student">
+        <div class="student-name">سارة علي</div>
+        <!-- <div class="student-role">محللة بيانات</div> -->
+        <div class="student-course">تحليل البيانات</div>
+        <div class="student-level">موظف خبير</div>
+        <div class="rating">
+          <i class="fas fa-star"></i><i class="fas fa-star"></i>
+          <i class="fas fa-star"></i><i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+        </div>
+        <div class="salary">متوسط الراتب: 9000 جنيه</div>
+        <a href="#" class="cv-btn">عرض السيرة الذاتية</a>
+      </div>
+
+      <div class="student-card" data-salary="7500" data-course="محاسبة المصانع" data-level="مدير">
+        <img src="https://randomuser.me/api/portraits/men/44.jpg" alt="student">
+        <div class="student-name">محمد حسن</div>
+        <!-- <div class="student-role">محاسب مصانع</div> -->
+        <div class="student-course">محاسبة المصانع</div>
+        <div class="student-level">مدير</div>
+        <div class="rating">
+          <i class="fas fa-star"></i><i class="fas fa-star"></i>
+          <i class="fas fa-star"></i><i class="fas fa-star"></i>
+          <i class="far fa-star"></i>
+        </div>
+        <div class="salary">متوسط الراتب: 7500 جنيه</div>
+        <a href="#" class="cv-btn">عرض السيرة الذاتية</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 محاسب بلا قيود. جميع الحقوق محفوظة.</p>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById('main-nav').classList.toggle('active');
+    }
+
+    const salaryFrom = document.getElementById('salary-from');
+    const salaryTo = document.getElementById('salary-to');
+    const courseFilter = document.getElementById('course-filter');
+    const levelFilter = document.getElementById('level-filter');
+    const cards = document.querySelectorAll('.student-card');
+
+    function filterCards() {
+      const min = parseInt(salaryFrom.value) || 0;
+      const max = parseInt(salaryTo.value) || Infinity;
+      const course = courseFilter.value;
+      const level = levelFilter.value;
+
+      cards.forEach(card => {
+        const salary = parseInt(card.dataset.salary);
+        const studentCourse = card.dataset.course;
+        const studentLevel = card.dataset.level;
+
+        const inRange = salary >= min && salary <= max;
+        const courseMatch = !course || studentCourse === course;
+        const levelMatch = !level || studentLevel === level;
+
+        card.style.display = (inRange && courseMatch && levelMatch) ? 'block' : 'none';
+      });
+    }
+
+    salaryFrom.addEventListener('input', filterCards);
+    salaryTo.addEventListener('input', filterCards);
+    courseFilter.addEventListener('change', filterCards);
+    levelFilter.addEventListener('change', filterCards);
+  </script>
+</body>
+</html>

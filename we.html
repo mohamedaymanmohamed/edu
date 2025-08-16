@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>من نحن - محاسب بلا قيود</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --main-color: #306BFF;
+      --bg-light: #f5f7fa;
+      --text-color: #1e2a38;
+      --light-gray: #e6ecf3;
+      --transition-speed: 0.3s;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Cairo', sans-serif;
+      background: var(--bg-light);
+      color: var(--text-color);
+    }
+
+    /* Header */
+    header {
+      background: white;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 2rem;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      position: sticky;
+      top: 0;
+      z-index: 999;
+    }
+
+    .logo {
+      font-weight: bold;
+      font-size: 1.5rem;
+      color: var(--main-color);
+      text-align: center;
+      flex: 1;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.2rem;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--text-color);
+      font-weight: 600;
+      transition: color var(--transition-speed);
+    }
+
+    nav a:hover {
+      color: var(--main-color);
+    }
+
+    .menu-toggle {
+      font-size: 1.6rem;
+      color: var(--main-color);
+      cursor: pointer;
+      order: -1;
+    }
+
+    @media (max-width: 768px) {
+      nav ul {
+        display: none;
+        flex-direction: column;
+        background: white;
+        position: absolute;
+        top: 60px;
+        right: 0;
+        width: 100%;
+        text-align: center;
+        padding: 1rem 0;
+      }
+
+      nav ul.active {
+        display: flex;
+      }
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: auto;
+      padding: 2rem;
+    }
+
+    h2 {
+      text-align: center;
+      color: var(--main-color);
+      margin-bottom: 2rem;
+    }
+
+    .section {
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      margin-bottom: 2rem;
+    }
+
+    .section h3 {
+      color: #1e2a38;
+      margin-bottom: 1rem;
+    }
+
+    .team {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+    }
+
+    .member {
+      background: #fff;
+      padding: 1rem;
+      border-radius: 10px;
+      width: 250px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      text-align: center;
+    }
+
+    .member img {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 1rem;
+    }
+
+    .member h4 {
+      margin: 0.5rem 0 0.2rem;
+    }
+
+    .member span {
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    footer {
+      background: var(--light-gray);
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="menu-toggle" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
+    <div class="logo">محاسب بلا قيود</div>
+    <nav>
+      <ul id="main-nav">
+        <li><a href="index.html">الرئيسية</a></li>
+        <li><a href="courses.html">الدورات</a></li>
+        <li><a href="we.html">من نحن</a></li>
+        <li><a href="consulting.html">الاستشارات</a></li>
+        <!-- <li><a href="contact.html">تواصل معنا</a></li> -->
+        <li><a href="job.html">التوظيف</a></li>
+        <!-- <li><a href="login.html">دخول</a></li> -->
+      </ul>
+      
+    </nav>
+  </header>
+
+  <!-- Content -->
+  <div class="container">
+    <h2>من نحن</h2>
+
+    <div class="section">
+      <h3>نبذة عن الأكاديمية</h3>
+      <p>نحن منصة تعليمية إلكترونية متخصصة في تقديم دورات احترافية في مجالات المحاسبة وتحليل البيانات وغيرها من التخصصات المهمة لسوق العمل. نهدف إلى تمكين المديرين والموظفين والطلاب من المهارات العملية اللازمة للنجاح المهني من خلال محتوى تعليمي عالي الجودة يقدمه نخبة من أفضل الخبراء.</p>
+    </div>
+
+    <div class="section">
+      <h3>رسالتنا</h3>
+      <p>تمكين الشباب العربي من التعلم الفعّال والاحترافي عن بُعد، وبناء كوادر مؤهلة قادرة على المنافسة في سوق العمل المحلي والدولي.</p>
+    </div>
+
+    <div class="section">
+      <h3>رؤيتنا</h3>
+      <p>أن نكون المنصة الإلكترونية الرائدة في العالم العربي في مجالات التعليم المهني والتقني.</p>
+    </div>
+
+    <!-- <div class="section">
+      <h3>فريق العمل</h3>
+      <div class="team">
+        <div class="member">
+          <img src="https://randomuser.me/api/portraits/men/31.jpg" alt="">
+          <h4>أ. خالد محمود</h4>
+          <span>المدير التنفيذي</span>
+        </div>
+        <div class="member">
+          <img src="https://randomuser.me/api/portraits/women/55.jpg" alt="">
+          <h4>م. نسرين عبد الله</h4>
+          <span>مديرة تطوير المحتوى</span>
+        </div>
+        <div class="member">
+          <img src="https://randomuser.me/api/portraits/men/66.jpg" alt="">
+          <h4>د. أحمد طه</h4>
+          <span>خبير تحليل البيانات</span>
+        </div>
+      </div>
+    </div> -->
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 محاسب بلا قيود. جميع الحقوق محفوظة.</p>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById('main-nav').classList.toggle('active');
+    }
+  </script>
+</body>
+</html>
