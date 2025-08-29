@@ -118,6 +118,51 @@
       font-family: 'Cairo', sans-serif;
     }
 
+    /* الدولة - القائمة */
+    .country-filter {
+      position: relative;
+      width: 220px;
+    }
+
+    .country-search {
+      width: 100%;
+      padding: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      margin-bottom: 0.3rem;
+    }
+
+    .country-list {
+      max-height: 180px;
+      overflow-y: auto;
+      background: white;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      display: none;
+      position: absolute;
+      width: 100%;
+      z-index: 10;
+    }
+
+    .country-list div {
+      padding: 0.5rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .country-list div:hover {
+      background: var(--bg-light);
+    }
+
+    .country-flag {
+      width: 20px;
+      height: 14px;
+      object-fit: cover;
+      border: 1px solid #ddd;
+    }
+
     .students-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -146,17 +191,19 @@
       margin-bottom: 0.3rem;
     }
 
-    .student-role {
-      color: #555;
-      font-size: 0.95rem;
-      margin-bottom: 0.3rem;
-    }
-
     .student-course,
-    .student-level {
+    .student-level,
+    .student-country {
       color: #333;
       font-size: 0.9rem;
       margin-bottom: 0.5rem;
+    }
+
+    .student-country {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
     }
 
     .rating {
@@ -205,9 +252,7 @@
         <li><a href="courses.html">الدورات</a></li>
         <li><a href="we.html">من نحن</a></li>
         <li><a href="consulting.html">الاستشارات</a></li>
-        <!-- <li><a href="contact.html">تواصل معنا</a></li> -->
         <li><a href="job.html">التوظيف</a></li>
-        <!-- <li><a href="login.html">دخول</a></li> -->
       </ul>
     </nav>
   </header>
@@ -232,15 +277,23 @@
         <option value="موظف خبير">موظف خبير</option>
         <option value="مدير">مدير</option>
       </select>
+
+      <!-- فلترة الدولة -->
+      <div class="country-filter">
+        <input type="text" id="country-search" class="country-search" placeholder="ابحث عن الدولة...">
+        <div id="country-list" class="country-list"></div>
+      </div>
     </div>
 
     <div class="students-grid">
-      <div class="student-card" data-salary="7000" data-course="محاسبة المقاولات" data-level="حديث التخرج">
+      <div class="student-card" data-salary="7000" data-course="محاسبة المقاولات" data-level="حديث التخرج" data-country="مصر">
         <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="student">
         <div class="student-name">أحمد جمال</div>
-        <!-- <div class="student-role">محاسب مقاولات</div> -->
         <div class="student-course">محاسبة المقاولات</div>
         <div class="student-level">حديث التخرج</div>
+        <div class="student-country">
+          <class="country-flag"> مصر
+        </div>
         <div class="rating">
           <i class="fas fa-star"></i><i class="fas fa-star"></i>
           <i class="fas fa-star"></i><i class="fas fa-star"></i>
@@ -250,12 +303,14 @@
         <a href="#" class="cv-btn">عرض السيرة الذاتية</a>
       </div>
 
-      <div class="student-card" data-salary="9000" data-course="تحليل البيانات" data-level="موظف خبير">
+      <div class="student-card" data-salary="9000" data-course="تحليل البيانات" data-level="موظف خبير" data-country="السعودية">
         <img src="https://randomuser.me/api/portraits/women/45.jpg" alt="student">
         <div class="student-name">سارة علي</div>
-        <!-- <div class="student-role">محللة بيانات</div> -->
         <div class="student-course">تحليل البيانات</div>
         <div class="student-level">موظف خبير</div>
+        <div class="student-country">
+          <class="country-flag"> السعودية
+        </div>
         <div class="rating">
           <i class="fas fa-star"></i><i class="fas fa-star"></i>
           <i class="fas fa-star"></i><i class="fas fa-star"></i>
@@ -265,12 +320,14 @@
         <a href="#" class="cv-btn">عرض السيرة الذاتية</a>
       </div>
 
-      <div class="student-card" data-salary="7500" data-course="محاسبة المصانع" data-level="مدير">
+      <div class="student-card" data-salary="7500" data-course="محاسبة المصانع" data-level="مدير" data-country="الإمارات">
         <img src="https://randomuser.me/api/portraits/men/44.jpg" alt="student">
         <div class="student-name">محمد حسن</div>
-        <!-- <div class="student-role">محاسب مصانع</div> -->
         <div class="student-course">محاسبة المصانع</div>
         <div class="student-level">مدير</div>
+        <div class="student-country">
+          <class="country-flag"> الإمارات
+        </div>
         <div class="rating">
           <i class="fas fa-star"></i><i class="fas fa-star"></i>
           <i class="fas fa-star"></i><i class="fas fa-star"></i>
@@ -298,6 +355,61 @@
     const levelFilter = document.getElementById('level-filter');
     const cards = document.querySelectorAll('.student-card');
 
+    // قائمة الدول (اسم + كود علم)
+    const countries = [
+      { name: "مصر", code: "eg" },
+      { name: "السعودية", code: "sa" },
+      { name: "الإمارات", code: "ae" },
+      { name: "الكويت", code: "kw" },
+      { name: "قطر", code: "qa" },
+      { name: "البحرين", code: "bh" },
+      { name: "عمان", code: "om" },
+      { name: "الأردن", code: "jo" },
+      { name: "لبنان", code: "lb" },
+      { name: "فلسطين", code: "ps" },
+      { name: "العراق", code: "iq" },
+      { name: "الجزائر", code: "dz" },
+      { name: "المغرب", code: "ma" },
+      { name: "تونس", code: "tn" },
+      { name: "ليبيا", code: "ly" },
+      { name: "السودان", code: "sd" },
+      { name: "اليمن", code: "ye" },
+      { name: "موريتانيا", code: "mr" },
+      { name: "جيبوتي", code: "dj" },
+      { name: "الصومال", code: "so" },
+      { name: "جزر القمر", code: "km" }
+    ];
+
+    const countrySearch = document.getElementById("country-search");
+    const countryList = document.getElementById("country-list");
+    let selectedCountry = "";
+
+    // عرض قائمة الدول
+    function renderCountryList(filterText = "") {
+      countryList.innerHTML = "";
+      const filtered = countries.filter(c => c.name.includes(filterText));
+      filtered.forEach(c => {
+        const div = document.createElement("div");
+        div.innerHTML = `<img src="https://flagcdn.com/w20/${c.code}.png" class="country-flag"> ${c.name}`;
+        div.onclick = () => {
+          selectedCountry = c.name;
+          countrySearch.value = c.name;
+          countryList.style.display = "none";
+          filterCards();
+        };
+        countryList.appendChild(div);
+      });
+      countryList.style.display = filtered.length ? "block" : "none";
+    }
+
+    countrySearch.addEventListener("focus", () => renderCountryList());
+    countrySearch.addEventListener("input", () => renderCountryList(countrySearch.value));
+    document.addEventListener("click", (e) => {
+      if (!e.target.closest(".country-filter")) {
+        countryList.style.display = "none";
+      }
+    });
+
     function filterCards() {
       const min = parseInt(salaryFrom.value) || 0;
       const max = parseInt(salaryTo.value) || Infinity;
@@ -308,12 +420,14 @@
         const salary = parseInt(card.dataset.salary);
         const studentCourse = card.dataset.course;
         const studentLevel = card.dataset.level;
+        const studentCountry = card.dataset.country;
 
         const inRange = salary >= min && salary <= max;
         const courseMatch = !course || studentCourse === course;
         const levelMatch = !level || studentLevel === level;
+        const countryMatch = !selectedCountry || studentCountry === selectedCountry;
 
-        card.style.display = (inRange && courseMatch && levelMatch) ? 'block' : 'none';
+        card.style.display = (inRange && courseMatch && levelMatch && countryMatch) ? 'block' : 'none';
       });
     }
 
